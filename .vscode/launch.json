@@ -34,6 +34,44 @@
       "name": "Attach to Process",
       "type": "coreclr",
       "request": "attach"
-    }
+    },
+    {
+      "name": "Play",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "/Applications/Godot_mono.app/Contents/MacOS/Godot",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+    },
+    {
+      "name": "Debug Tests",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "/Applications/Godot_mono.app/Contents/MacOS/Godot",
+      "args": [
+        // These command line flags are used by GoDotTest to run tests.
+        "--run-tests",
+        "--quit-on-finish"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+    },
+    {
+      "name": "Debug Current Test",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "/Applications/Godot_mono.app/Contents/MacOS/Godot",
+      "args": [
+        // These command line flags are used by GoDotTest to run tests.
+        "--run-tests=${fileBasenameNoExtension}",
+        "--quit-on-finish"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+    },
   ]
 }

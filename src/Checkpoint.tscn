@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnkce7atusore"]
+
+[ext_resource type="Script" path="res://src/Checkpoint.cs" id="1_gl81l"]
+
+[node name="Checkpoint" type="Node"]
+script = ExtResource("1_gl81l")
