@@ -12,7 +12,7 @@ using Chickensoft.GoDotTest;
 // If you want to edit your game's main entry-point, please see Game.tscn and
 // Game.cs instead.
 
-public partial class Main : Node
+public partial class Main : Node3D
 {
 #if DEBUG
   public TestEnvironment Environment = default!;
