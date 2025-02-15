@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ceoavt1y0mlai"
-path="res://.godot/imported/Walking(1).fbx-5c8102a89436b1b5ea1779566e19e244.scn"
+uid="uid://vmobxhfae1p2"
+path="res://.godot/imported/XBot.glb-0659acf61273d1ca98a346260927f6df.scn"
 
 [deps]
 
-source_file="res://src/assets/Walking(1).fbx"
-dest_files=["res://.godot/imported/Walking(1).fbx-5c8102a89436b1b5ea1779566e19e244.scn"]
+source_file="res://src/assets/XBot.glb"
+dest_files=["res://.godot/imported/XBot.glb-0659acf61273d1ca98a346260927f6df.scn"]
 
 [params]
 
@@ -27,11 +27,17 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+_subresources={
+"nodes": {
+"PATH:XBot/Skeleton3D": {
+"rest_pose/external_animation_library": null,
+"retarget/bone_map": Resource("res://src/assets/Mixamo BoneMap.tres")
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

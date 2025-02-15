@@ -1,11 +1,11 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 namespace Prototype;
 
 public interface IMove
 {
+	public CharacterBody3D Player { get; set; }
 	public string CheckRelevance(InputPackage input);
 	public void Update(InputPackage input, double delta);
 	public void OnEnterState();

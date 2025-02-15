@@ -1,42 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbnefkig0nel2"]
+[gd_scene load_steps=6 format=3 uid="uid://bbnefkig0nel2"]
 
 [ext_resource type="Script" path="res://src/scripts/Player/Player.cs" id="1_3o1oy"]
 [ext_resource type="Script" path="res://src/scripts/Player/InputGatherer.cs" id="2_d78rq"]
-[ext_resource type="Script" path="res://src/scripts/Player/Model.cs" id="3_pq5dn"]
-[ext_resource type="Script" path="res://src/scripts/Player/Moves/Idle.cs" id="4_4t6ak"]
-[ext_resource type="Script" path="res://src/scripts/Player/Moves/Run.cs" id="5_l0788"]
-[ext_resource type="Script" path="res://src/scripts/Player/Moves/Jump.cs" id="6_wlxhu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpf6v"]
-albedo_color = Color(0.309804, 1, 0.262745, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_3wxmw"]
-material = SubResource("StandardMaterial3D_jpf6v")
+[ext_resource type="PackedScene" uid="uid://dkl1i7wju7vba" path="res://src/scenes/Player/PlayerVisuals.tscn" id="2_umreh"]
+[ext_resource type="PackedScene" uid="uid://cpopwfpb6b6wq" path="res://src/scenes/HumanoidModel/HumanoidModel.tscn" id="3_dpfyg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sd4r4"]
+height = 2.47457
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3o1oy")
 
-[node name="Visuals" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_3wxmw")
+[node name="PlayerVisuals" parent="." instance=ExtResource("2_umreh")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.667, 0, 0, 0, 0.667, 0, 0, 0, 0.667, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_sd4r4")
+
+[node name="Model" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_dpfyg")]
+player = NodePath("..")
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("2_d78rq")
 
-[node name="Model" type="Node" parent="."]
-script = ExtResource("3_pq5dn")
-
-[node name="Idle" type="Node" parent="Model"]
-script = ExtResource("4_4t6ak")
-
-[node name="Run" type="Node" parent="Model" node_paths=PackedStringArray("Player")]
-script = ExtResource("5_l0788")
-Player = NodePath("../..")
-
-[node name="Jump" type="Node" parent="Model" node_paths=PackedStringArray("Player")]
-script = ExtResource("6_wlxhu")
-Player = NodePath("../..")
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-1, -7.82235e-08, 1.40344e-07, -2.09273e-08, 0.929455, 0.368936, -1.59303e-07, 0.368936, -0.929455, 0, 3.47206, -2.86976)

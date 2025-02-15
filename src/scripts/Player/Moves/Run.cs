@@ -5,7 +5,8 @@ namespace Prototype;
 
 public partial class Run : Node, IMove
 {
-	[Export] CharacterBody3D Player;
+	private CharacterBody3D player;
+	public CharacterBody3D Player { get { return player; } set { player = value; } }
 
 	public const float Speed = 4.5f;
 

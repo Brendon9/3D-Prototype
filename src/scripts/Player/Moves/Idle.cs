@@ -1,10 +1,12 @@
 using Godot;
-using System;
 
 namespace Prototype;
 
 public partial class Idle : Node, IMove
 {
+	private CharacterBody3D player;
+	public CharacterBody3D Player { get { return player; } set { player = value; } }
+
 	public string CheckRelevance(InputPackage input)
 	{
 		input.actions.Sort(new Move.PrioritySort());
