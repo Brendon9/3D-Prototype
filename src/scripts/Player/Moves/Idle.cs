@@ -1,21 +1,27 @@
-using Godot;
-
 namespace Prototype;
 
-public partial class Idle : Node, IMove
+public partial class Idle : Move
 {
-	private CharacterBody3D player;
-	public CharacterBody3D Player { get { return player; } set { player = value; } }
-
-	public string CheckRelevance(InputPackage input)
+	public override void _Ready()
 	{
-		input.actions.Sort(new Move.PrioritySort());
+		Animation = "idle";
+	}
+
+	public override string CheckRelevance(InputPackage input)
+	{
+		input.actions.Sort(new PrioritySort());
 		return input.actions[0];
 	}
 
-	public void Update(InputPackage input, double delta) { }
+	public override void OnEnterState()
+	{
+	}
 
-	public void OnEnterState() { }
+	public override void OnExitState()
+	{
+	}
 
-	public void OnExitState() { }
+	public override void Update(InputPackage input, double delta)
+	{
+	}
 }

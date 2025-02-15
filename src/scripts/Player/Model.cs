@@ -8,22 +8,23 @@ public partial class Model : Node
 	[Export] public Player player;
 	[Export] public Skeleton3D skeleton;
 	public AnimationPlayer animator;
-	private IMove currentMove;
-	Dictionary<string, IMove> moves = new Dictionary<string, IMove>();
+	private Move currentMove;
+	Dictionary<string, Move> moves = new Dictionary<string, Move>();
 
 	public override void _Ready()
 	{
 		skeleton = GetNode<Skeleton3D>("GeneralSkeleton");
 		animator = GetNode<AnimationPlayer>("AnimationPlayer");
+
 		moves.Add("idle", GetNode<Idle>("Idle"));
 		moves.Add("run", GetNode<Run>("Run"));
-		moves.Add("jump", GetNode<Jump>("Jump"));
+		moves.Add("jump_run", GetNode<JumpRun>("JumpRun"));
 		currentMove = moves["idle"];
-		foreach (IMove move in moves.Values)
+
+		foreach (Move move in moves.Values)
 		{
 			move.Player = player;
 		}
-
 	}
 
 	public void Update(InputPackage input, double delta)
@@ -41,5 +42,6 @@ public partial class Model : Node
 		currentMove.OnExitState();
 		currentMove = moves[state];
 		currentMove.OnEnterState();
+		animator.Play(currentMove.Animation);
 	}
 }

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/scripts/Player/Model.cs" id="1_ydf1p"]
 [ext_resource type="Script" path="res://src/scripts/Player/Moves/Idle.cs" id="2_pidm8"]
 [ext_resource type="Script" path="res://src/scripts/Player/Moves/Run.cs" id="3_lhfkc"]
-[ext_resource type="Script" path="res://src/scripts/Player/Moves/Jump.cs" id="4_bgc04"]
+[ext_resource type="Script" path="res://src/scripts/Player/Moves/JumpRun.cs" id="4_8ig8b"]
 
 [sub_resource type="Animation" id="Animation_33t74"]
 resource_name = "TPose"
@@ -2046,5 +2046,5 @@ script = ExtResource("2_pidm8")
 [node name="Run" type="Node" parent="."]
 script = ExtResource("3_lhfkc")
 
-[node name="Jump" type="Node" parent="."]
-script = ExtResource("4_bgc04")
+[node name="JumpRun" type="Node" parent="."]
+script = ExtResource("4_8ig8b")
