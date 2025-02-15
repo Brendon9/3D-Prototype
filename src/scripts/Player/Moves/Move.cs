@@ -1,28 +1,21 @@
 using Godot;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace Prototype;
-
-// public interface IMove
-// {
-// 	public string CheckRelevance(InputPackage input);
-// 	// public void Update(InputPackage input, double delta);
-// 	// public void OnEnterState();
-// 	public void OnExitState();
-// 	public double GetProgress();
-// }
 
 public abstract partial class Move : Node //, IMove
 {
 	public string Animation;
-	public CharacterBody3D Player;
+	public string MoveName;
+	public Player Player;
 	public static Dictionary<string, int> MovesPriority = new Dictionary<string, int>()
 		{
 				{ "idle", 1 },
 				{ "run", 2 },
 				{ "sprint", 3 },
-				{ "jump_run", 10 }
+				{ "jump_run", 10 },
+				{ "midair", 10 },
+				{ "landing_run", 10 },
 		};
 	private double EnterStateTime;
 

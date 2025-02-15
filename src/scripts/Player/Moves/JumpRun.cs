@@ -12,32 +12,38 @@ public partial class JumpRun : Move
   public override void _Ready()
   {
     Animation = "jump_run";
+    MoveName = "jump_run";
   }
 
   public override string CheckRelevance(InputPackage input)
   {
-    if (Player.IsOnFloor())
+    if (WorksLongerThan(TransitionTiming))
     {
-      input.actions.Sort(new PrioritySort());
-      return input.actions[0];
+      jumped = false;
+      return "midair";
     }
-    return "okay";
+    else
+    {
+      return "okay";
+    }
   }
 
-  public override void Update(InputPackage input, double delta)
+  public override void Update(InputPackage _input, double delta)
   {
-    Player.Velocity += Player.GetGravity() * (float)delta;
+    if (WorksLongerThan(JumpTiming))
+    {
+      if (!jumped)
+      {
+        Vector3 velocity = Player.Velocity;
+        velocity.Y = VerticalSpeedAdded;
+        Player.Velocity += velocity;
+        jumped = true;
+      }
+    }
     Player.MoveAndSlide();
   }
 
-  public override void OnEnterState()
-  {
-    Vector3 velocity = Player.Velocity;
-    // velocity.Y = JumpVelocity;
-    Player.Velocity = velocity;
-  }
+  public override void OnEnterState() { }
 
-  public override void OnExitState()
-  {
-  }
+  public override void OnExitState() { }
 }

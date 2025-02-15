@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://dkl1i7wju7vba"]
+[gd_scene load_steps=7 format=4 uid="uid://wqvj3keel1vt"]
 
-[ext_resource type="Script" path="res://src/scripts/Player/PlayerVisuals.cs" id="1_hw4yq"]
+[ext_resource type="Script" path="res://src/scripts/Player/Visuals/PlayerVisuals.cs" id="1_hw4yq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q30tq"]
 resource_name = "Beta_Joints_MAT1"
@@ -255,7 +255,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [node name="PlayerVisuals" type="Node3D" node_paths=PackedStringArray("betaJoints", "betaSurface")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_hw4yq")
 betaJoints = NodePath("BetaJoints")
 betaSurface = NodePath("BetaSurface")

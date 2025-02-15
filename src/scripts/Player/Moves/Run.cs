@@ -4,7 +4,7 @@ namespace Prototype;
 
 public partial class Run : Move
 {
-	public const float Speed = 2.5f;
+	public const float Speed = 3.0f;
 
 	public override void _Ready()
 	{
@@ -13,6 +13,11 @@ public partial class Run : Move
 
 	public override string CheckRelevance(InputPackage input)
 	{
+		if (!Player.IsOnFloor())
+		{
+			return "midair";
+		}
+
 		input.actions.Sort(new PrioritySort());
 		if (input.actions[0] == "run")
 		{
@@ -24,6 +29,7 @@ public partial class Run : Move
 	public override void Update(InputPackage input, double delta)
 	{
 		Player.Velocity = VelocityByInput(input, delta);
+		Player.LookAt(Player.GlobalPosition - Player.Velocity);
 		Player.MoveAndSlide();
 	}
 
@@ -31,15 +37,16 @@ public partial class Run : Move
 	{
 		Vector3 newVelocity = Player.Velocity;
 
-		Vector3 direction = (Player.Transform.Basis * new Vector3(input.inputDirection.X, 0, input.inputDirection.Y)).Normalized();
+		Vector3 direction = (Player.cameraMount.Basis * new Vector3(input.inputDirection.X, 0, input.inputDirection.Y)).Normalized();
 		newVelocity.X = direction.X * Speed;
 		newVelocity.Z = direction.Z * Speed;
 
 		if (!Player.IsOnFloor())
 		{
-			newVelocity += Player.GetGravity() * (float)delta;
+			newVelocity -= Player.GetGravity() * (float)delta;
 		}
 
+		GD.Print(newVelocity);
 		return newVelocity;
 	}
 

@@ -1,3 +1,5 @@
+using Godot;
+
 namespace Prototype;
 
 public partial class Idle : Move
@@ -15,6 +17,7 @@ public partial class Idle : Move
 
 	public override void OnEnterState()
 	{
+		Player.Velocity = Vector3.Zero;
 	}
 
 	public override void OnExitState()

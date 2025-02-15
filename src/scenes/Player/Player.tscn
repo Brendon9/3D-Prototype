@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbnefkig0nel2"]
+[gd_scene load_steps=7 format=3 uid="uid://bbnefkig0nel2"]
 
 [ext_resource type="Script" path="res://src/scripts/Player/Player.cs" id="1_3o1oy"]
-[ext_resource type="Script" path="res://src/scripts/Player/InputGatherer.cs" id="2_d78rq"]
-[ext_resource type="PackedScene" uid="uid://dkl1i7wju7vba" path="res://src/scenes/Player/PlayerVisuals.tscn" id="2_umreh"]
-[ext_resource type="PackedScene" uid="uid://cpopwfpb6b6wq" path="res://src/scenes/HumanoidModel/HumanoidModel.tscn" id="3_dpfyg"]
+[ext_resource type="Script" path="res://src/scripts/Player/Input/InputGatherer.cs" id="2_d78rq"]
+[ext_resource type="PackedScene" uid="uid://wqvj3keel1vt" path="res://src/scenes/Player/Visuals/PlayerVisuals.tscn" id="2_umreh"]
+[ext_resource type="PackedScene" uid="uid://cpopwfpb6b6wq" path="res://src/scenes/Player/HumanoidModel/HumanoidModel.tscn" id="3_dpfyg"]
+[ext_resource type="Script" path="res://src/scripts/Player/Camera.cs" id="5_4nbsn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sd4r4"]
 radius = 0.2
@@ -14,15 +15,20 @@ script = ExtResource("1_3o1oy")
 
 [node name="PlayerVisuals" parent="." instance=ExtResource("2_umreh")]
 
-[node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.667, 0, 0, 0, 0.667, 0, 0, 0, 0.667, 0, 0.8, 0)
-shape = SubResource("CapsuleShape3D_sd4r4")
-
 [node name="Model" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_dpfyg")]
 player = NodePath("..")
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("2_d78rq")
 
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.929133, 0.369747, 0, -0.369747, 0.929133, 0, 3.472, 3)
+[node name="CameraMount" type="Node3D" parent="." node_paths=PackedStringArray("Player")]
+top_level = true
+script = ExtResource("5_4nbsn")
+Player = NodePath("..")
+
+[node name="Camera" type="Camera3D" parent="CameraMount"]
+transform = Transform3D(-1, -5.07667e-08, 7.11722e-08, -2.09273e-08, 0.929455, 0.368936, -8.4881e-08, 0.368936, -0.929455, 0, 3.47206, -2.86976)
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_sd4r4")

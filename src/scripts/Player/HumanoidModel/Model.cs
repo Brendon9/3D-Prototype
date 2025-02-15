@@ -1,5 +1,5 @@
 using Godot;
-using System.Collections.Generic;
+using Godot.Collections;
 
 namespace Prototype;
 
@@ -14,11 +14,17 @@ public partial class Model : Node
 	public override void _Ready()
 	{
 		skeleton = GetNode<Skeleton3D>("GeneralSkeleton");
-		animator = GetNode<AnimationPlayer>("AnimationPlayer");
+		animator = GetNode<AnimationPlayer>("SkeletonAnimator");
 
-		moves.Add("idle", GetNode<Idle>("Idle"));
-		moves.Add("run", GetNode<Run>("Run"));
-		moves.Add("jump_run", GetNode<JumpRun>("JumpRun"));
+		moves.Add("idle", GetNode<Idle>("States/Idle"));
+		moves.Add("run", GetNode<Run>("States/Run"));
+		moves.Add("sprint", GetNode<Sprint>("States/Sprint"));
+		moves.Add("jump_run", GetNode<JumpRun>("States/JumpRun"));
+		moves.Add("midair", GetNode<JumpRun>("States/Midair"));
+		// moves.Add("landing_run", GetNode<JumpRun>("States/LandingRun"));
+		// moves.Add("jump_sprint", GetNode<JumpRun>("States/JumpSprint"));
+		// moves.Add("landing_sprint", GetNode<JumpRun>("States/LandingSprint"));
+
 		currentMove = moves["idle"];
 
 		foreach (Move move in moves.Values)
