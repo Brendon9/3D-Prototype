@@ -26,21 +26,21 @@ public partial class Run : Node, IMove
 
 	public void Update(InputPackage input, double delta)
 	{
-		Player.Velocity = VelocityByInput(input, delta);
-		Player.MoveAndSlide();
+		player.Velocity = VelocityByInput(input, delta);
+		player.MoveAndSlide();
 	}
 
 	private Vector3 VelocityByInput(InputPackage input, double delta)
 	{
-		Vector3 newVelocity = Player.Velocity;
+		Vector3 newVelocity = player.Velocity;
 
-		Vector3 direction = (Player.Transform.Basis * new Vector3(input.inputDirection.X, 0, input.inputDirection.Y)).Normalized();
+		Vector3 direction = (player.Transform.Basis * new Vector3(input.inputDirection.X, 0, input.inputDirection.Y)).Normalized();
 		newVelocity.X = direction.X * Speed;
 		newVelocity.Z = direction.Z * Speed;
 
-		if (!Player.IsOnFloor())
+		if (!player.IsOnFloor())
 		{
-			newVelocity += Player.GetGravity() * (float)delta;
+			newVelocity += player.GetGravity() * (float)delta;
 		}
 
 		return newVelocity;

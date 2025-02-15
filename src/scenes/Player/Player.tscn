@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpopwfpb6b6wq" path="res://src/scenes/HumanoidModel/HumanoidModel.tscn" id="3_dpfyg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sd4r4"]
+radius = 0.2
 height = 2.47457
 
 [node name="Player" type="CharacterBody3D"]
@@ -24,4 +25,4 @@ player = NodePath("..")
 script = ExtResource("2_d78rq")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(-1, -7.82235e-08, 1.40344e-07, -2.09273e-08, 0.929455, 0.368936, -1.59303e-07, 0.368936, -0.929455, 0, 3.47206, -2.86976)
+transform = Transform3D(1, 0, 0, 0, 0.929133, 0.369747, 0, -0.369747, 0.929133, 0, 3.472, 3)
