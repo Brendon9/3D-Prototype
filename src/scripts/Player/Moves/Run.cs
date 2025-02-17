@@ -5,6 +5,7 @@ namespace Prototype;
 public partial class Run : Move
 {
 	public const float Speed = 3.0f;
+	private float Gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
 
 	public override void _Ready()
 	{
@@ -37,16 +38,14 @@ public partial class Run : Move
 	{
 		Vector3 newVelocity = Player.Velocity;
 
-		Vector3 direction = (Player.cameraMount.Basis * new Vector3(input.inputDirection.X, 0, input.inputDirection.Y)).Normalized();
+		Vector3 direction = (Player.cameraMount.Basis * new Vector3(-input.inputDirection.X, 0, -input.inputDirection.Y)).Normalized();
 		newVelocity.X = direction.X * Speed;
 		newVelocity.Z = direction.Z * Speed;
 
 		if (!Player.IsOnFloor())
 		{
-			newVelocity -= Player.GetGravity() * (float)delta;
+			newVelocity += Player.GetGravity() * (float)delta;
 		}
-
-		GD.Print(newVelocity);
 		return newVelocity;
 	}
 

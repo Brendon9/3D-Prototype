@@ -6,6 +6,7 @@ namespace Prototype;
 public partial class Sprint : Move
 {
   public const float Speed = 5.0f;
+  private float Gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
 
   public override void _Ready()
   {
@@ -26,6 +27,7 @@ public partial class Sprint : Move
   public override void Update(InputPackage input, double delta)
   {
     Player.Velocity = VelocityByInput(input, delta);
+    Player.LookAt(Player.GlobalPosition - Player.Velocity);
     Player.MoveAndSlide();
   }
 
@@ -37,13 +39,13 @@ public partial class Sprint : Move
   {
     Vector3 newVelocity = Player.Velocity;
 
-    Vector3 direction = (Player.Transform.Basis * new Vector3(input.inputDirection.X, 0, input.inputDirection.Y)).Normalized();
+    Vector3 direction = (Player.cameraMount.Basis * new Vector3(-input.inputDirection.X, 0, -input.inputDirection.Y)).Normalized();
     newVelocity.X = direction.X * Speed;
     newVelocity.Z = direction.Z * Speed;
 
     if (!Player.IsOnFloor())
     {
-      newVelocity += Player.GetGravity() * (float)delta;
+      newVelocity.Y -= Gravity * (float)delta;
     }
 
     return newVelocity;

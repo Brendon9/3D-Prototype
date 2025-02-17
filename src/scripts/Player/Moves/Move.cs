@@ -14,8 +14,10 @@ public abstract partial class Move : Node //, IMove
 				{ "run", 2 },
 				{ "sprint", 3 },
 				{ "jump_run", 10 },
+				{ "jump_sprint", 10 },
 				{ "midair", 10 },
 				{ "landing_run", 10 },
+				{ "landing_sprint", 10 },
 		};
 	private double EnterStateTime;
 

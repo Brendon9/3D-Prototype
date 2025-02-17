@@ -34,9 +34,7 @@ public partial class JumpRun : Move
     {
       if (!jumped)
       {
-        Vector3 velocity = Player.Velocity;
-        velocity.Y = VerticalSpeedAdded;
-        Player.Velocity += velocity;
+        Player.Velocity += Player.Velocity with { Y = VerticalSpeedAdded };
         jumped = true;
       }
     }

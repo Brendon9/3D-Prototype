@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsb4g6ag1ck58"]
-
-[ext_resource type="Script" path="res://Checkpoint.cs" id="1_smkbs"]
-
-[node name="Checkpoint" type="Node"]
-script = ExtResource("1_smkbs")
-diceRoll = null

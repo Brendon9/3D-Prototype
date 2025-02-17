@@ -17,7 +17,6 @@ public partial class Player : CharacterBody3D
 		cameraMount = GetNode<Camera>("CameraMount");
 
 		visuals.AcceptSkeleton(model.skeleton);
-		model.animator.Play("run");
 	}
 
 	public override void _PhysicsProcess(double delta)

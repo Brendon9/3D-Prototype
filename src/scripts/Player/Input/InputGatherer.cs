@@ -20,20 +20,20 @@ public partial class InputGatherer : Node
 
 		if (Input.IsActionJustPressed("jump"))
 		{
-			// if (newInput.actions.Contains("sprint"))
-			// {
-			// 	newInput.actions.Add("jump_sprint");
-			// }
-			// else
-			// {
-			newInput.actions.Add("jump_run");
-			// }
+			if (newInput.actions.Contains("sprint"))
+			{
+				newInput.actions.Add("jump_sprint");
+			}
+			else
+			{
+				newInput.actions.Add("jump_run");
+			}
 		}
 
-		// if (Input.IsActionJustPressed("light_attack"))
-		// {
-		// 	newInput.actions.Add("light_attack_pressed");
-		// }
+		if (Input.IsActionJustPressed("light_attack"))
+		{
+			newInput.actions.Add("light_attack_pressed");
+		}
 
 		if (newInput.actions.Count == 0)
 		{

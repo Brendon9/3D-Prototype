@@ -1,9 +1,9 @@
 using Godot;
-using Godot.Collections;
+using System.Collections.Generic;
 
 namespace Prototype;
 
-public partial class Model : Node
+public partial class Model : Node3D
 {
 	[Export] public Player player;
 	[Export] public Skeleton3D skeleton;
@@ -20,10 +20,10 @@ public partial class Model : Node
 		moves.Add("run", GetNode<Run>("States/Run"));
 		moves.Add("sprint", GetNode<Sprint>("States/Sprint"));
 		moves.Add("jump_run", GetNode<JumpRun>("States/JumpRun"));
-		moves.Add("midair", GetNode<JumpRun>("States/Midair"));
-		// moves.Add("landing_run", GetNode<JumpRun>("States/LandingRun"));
-		// moves.Add("jump_sprint", GetNode<JumpRun>("States/JumpSprint"));
-		// moves.Add("landing_sprint", GetNode<JumpRun>("States/LandingSprint"));
+		moves.Add("midair", GetNode<Midair>("States/Midair"));
+		moves.Add("landing_run", GetNode<LandingRun>("States/LandingRun"));
+		moves.Add("jump_sprint", GetNode<JumpSprint>("States/JumpSprint"));
+		moves.Add("landing_sprint", GetNode<LandingSprint>("States/LandingSprint"));
 
 		currentMove = moves["idle"];
 

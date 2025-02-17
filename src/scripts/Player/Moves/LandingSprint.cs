@@ -2,18 +2,18 @@ using Godot;
 
 namespace Prototype;
 
-public partial class LandingRun : Move
+public partial class LandingSprint : Move
 {
 	private const float TransitionTiming = 0.2f;
 	public override void _Ready()
 	{
-		Animation = "landing_run";
-		MoveName = "landing_run";
+		Animation = "landing_sprint";
+		MoveName = "landing_sprint";
 	}
 
 	public override string CheckRelevance(InputPackage input)
 	{
-		if (WorksLongerThan(TransitionTiming))
+		if (GetProgress() >= 0.2)
 		{
 			input.actions.Sort(new PrioritySort());
 			return input.actions[0];
@@ -22,6 +22,7 @@ public partial class LandingRun : Move
 		{
 			return "okay";
 		}
+
 	}
 
 	public override void Update(InputPackage _input, double delta)

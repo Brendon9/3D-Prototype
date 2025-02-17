@@ -8,6 +8,7 @@ public partial class Midair : Move
 	[Export] BoneAttachment3D RootAttachment;
 
 	private const float LandingHeight = 1.163f;
+
 	public override void _Ready()
 	{
 		Animation = "midair";
@@ -43,7 +44,8 @@ public partial class Midair : Move
 
 	public override void Update(InputPackage input, double delta)
 	{
-		Player.Velocity -= Player.GetGravity() * (float)delta;
+		GD.Print(Player.GetGravity());
+		Player.Velocity += Player.GetGravity() * (float)delta;
 		Player.MoveAndSlide();
 	}
 }
