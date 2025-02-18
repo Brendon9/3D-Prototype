@@ -51,6 +51,6 @@ public class CoreSet<T> : ICollection<T>, IEnumerable<T>, IEnumerable, IReadOnly
 
 	public void GetObjectData(SerializationInfo info, StreamingContext context)
 	{
-		throw new System.NotImplementedException();
+		set.GetObjectData(info, context);
 	}
 }
