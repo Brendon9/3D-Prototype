@@ -30,6 +30,13 @@ public partial class Camera : Node3D
 		{
 			SwitchMouse();
 		}
+
+		if (@event is InputEventMouseMotion && mouseIsCaptured)
+		{
+			float dHor = ((InputEventMouseMotion)@event).Relative.X;
+			RotateY(-dHor / 1000);
+		}
+
 	}
 
 	private void SwitchMouse()

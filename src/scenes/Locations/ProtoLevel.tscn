@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsa0tqkcxis15"]
+[gd_scene load_steps=15 format=3 uid="uid://bsa0tqkcxis15"]
 
 [ext_resource type="PackedScene" uid="uid://bbnefkig0nel2" path="res://src/scenes/Player/Player.tscn" id="1_038r8"]
+[ext_resource type="Texture2D" uid="uid://bxtvuhelf82oa" path="res://src/assets/textures/texture_07.png" id="1_ty5g0"]
+[ext_resource type="Texture2D" uid="uid://4h4ol2x0n5" path="res://src/assets/textures/texture_09.png" id="3_edmfc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c488o"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -17,6 +19,25 @@ glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3k3qa"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_auid1"]
+albedo_texture = ExtResource("1_ty5g0")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_le6uw"]
+albedo_texture = ExtResource("3_edmfc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgh6m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btdy7"]
+albedo_texture = ExtResource("3_edmfc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmdkp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hvkk"]
+albedo_texture = ExtResource("3_edmfc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3ssx"]
+
 [node name="ProtoLevel" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -27,10 +48,32 @@ shadow_enabled = true
 environment = SubResource("Environment_p04y2")
 camera_attributes = SubResource("CameraAttributesPractical_3k3qa")
 
+[node name="Player" parent="." instance=ExtResource("1_038r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 use_collision = true
 size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_auid1")
 
-[node name="Player" parent="." instance=ExtResource("1_038r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="Box" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90411, 0.504346, 1.79941)
+material_override = SubResource("StandardMaterial3D_le6uw")
+use_collision = true
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_xgh6m")
+
+[node name="Box2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.5576, 0, 0.83011, 0, 1, 0, -0.83011, 0, 0.5576, 3.28412, 0.504346, -3.06418)
+material_override = SubResource("StandardMaterial3D_btdy7")
+use_collision = true
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_rmdkp")
+
+[node name="Box3" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.249653, -0.968335, 0, 0.968335, -0.249653, 0, 0, 0, 1, -4.61402, -0.635017, 2.20094)
+material_override = SubResource("StandardMaterial3D_0hvkk")
+use_collision = true
+size = Vector3(2, 10, 2)
+material = SubResource("StandardMaterial3D_c3ssx")
