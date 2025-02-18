@@ -32,7 +32,7 @@ public partial class InputGatherer : Node
 
 		if (Input.IsActionJustPressed("light_attack"))
 		{
-			newInput.actions.Add("light_attack_pressed");
+			newInput.combatActions.Add("light_attack_pressed");
 		}
 
 		if (newInput.actions.Count == 0)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://wqvj3keel1vt"]
+[gd_scene load_steps=8 format=4 uid="uid://wqvj3keel1vt"]
 
 [ext_resource type="Script" path="res://src/scripts/Player/Visuals/PlayerVisuals.cs" id="1_hw4yq"]
+[ext_resource type="PackedScene" uid="uid://bkrdmckcuyyta" path="res://src/scenes/Weapons/SwordVisuals.tscn" id="2_dukwv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q30tq"]
 resource_name = "Beta_Joints_MAT1"
@@ -254,10 +255,8 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="PlayerVisuals" type="Node3D" node_paths=PackedStringArray("betaJoints", "betaSurface")]
+[node name="PlayerVisuals" type="Node3D"]
 script = ExtResource("1_hw4yq")
-betaJoints = NodePath("BetaJoints")
-betaSurface = NodePath("BetaSurface")
 
 [node name="BetaJoints" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_61853")
@@ -268,3 +267,6 @@ skeleton = NodePath("")
 mesh = SubResource("ArrayMesh_jdfvw")
 skin = SubResource("Skin_klglp")
 skeleton = NodePath("")
+
+[node name="SwordVisuals" parent="." instance=ExtResource("2_dukwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3883)

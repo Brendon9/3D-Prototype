@@ -7,14 +7,16 @@ public partial class Model : Node3D
 {
 	[Export] public Player player;
 	[Export] public Skeleton3D skeleton;
+	[Export] public Combat Combat;
 	public AnimationPlayer animator;
+	public Weapon ActiveWeapon;
 	private Move currentMove;
 	Dictionary<string, Move> moves = new Dictionary<string, Move>();
-
 	public override void _Ready()
 	{
 		skeleton = GetNode<Skeleton3D>("GeneralSkeleton");
 		animator = GetNode<AnimationPlayer>("SkeletonAnimator");
+		ActiveWeapon = GetNode<Sword>("RightWrist/WeaponSocket/Sword");
 
 		moves.Add("idle", GetNode<Idle>("States/Idle"));
 		moves.Add("run", GetNode<Run>("States/Run"));
@@ -24,6 +26,7 @@ public partial class Model : Node3D
 		moves.Add("landing_run", GetNode<LandingRun>("States/LandingRun"));
 		moves.Add("jump_sprint", GetNode<JumpSprint>("States/JumpSprint"));
 		moves.Add("landing_sprint", GetNode<LandingSprint>("States/LandingSprint"));
+		moves.Add("slash_1", GetNode<Slash1>("States/Slash1"));
 
 		currentMove = moves["idle"];
 
@@ -35,7 +38,8 @@ public partial class Model : Node3D
 
 	public void Update(InputPackage input, double delta)
 	{
-		var relevance = currentMove.CheckRelevance(input);
+		input = Combat.TranslateCombatActions(input);
+		string relevance = currentMove.CheckRelevance(input);
 		if (relevance != "okay")
 		{
 			switchTo(relevance);
@@ -48,6 +52,7 @@ public partial class Model : Node3D
 		currentMove.OnExitState();
 		currentMove = moves[state];
 		currentMove.OnEnterState();
+		currentMove.MarkEnterState();
 		animator.Play(currentMove.Animation);
 	}
 }

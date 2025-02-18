@@ -44,7 +44,6 @@ public partial class Midair : Move
 
 	public override void Update(InputPackage input, double delta)
 	{
-		GD.Print(Player.GetGravity());
 		Player.Velocity += Player.GetGravity() * (float)delta;
 		Player.MoveAndSlide();
 	}

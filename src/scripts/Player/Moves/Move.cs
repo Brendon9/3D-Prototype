@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Prototype;
 
-public abstract partial class Move : Node //, IMove
+public abstract partial class Move : Node
 {
 	public string Animation;
 	public string MoveName;
@@ -18,6 +18,7 @@ public abstract partial class Move : Node //, IMove
 				{ "midair", 10 },
 				{ "landing_run", 10 },
 				{ "landing_sprint", 10 },
+				{ "slash_1", 15 },
 		};
 	private double EnterStateTime;
 
@@ -40,11 +41,6 @@ public abstract partial class Move : Node //, IMove
 
 	public abstract string CheckRelevance(InputPackage input);
 
-	private void MarkEnterState()
-	{
-		EnterStateTime = Time.GetUnixTimeFromSystem();
-	}
-
 	public double GetProgress()
 	{
 		double now = Time.GetUnixTimeFromSystem();
@@ -56,6 +52,11 @@ public abstract partial class Move : Node //, IMove
 	public abstract void OnExitState();
 
 	public abstract void Update(InputPackage input, double delta);
+
+	public void MarkEnterState()
+	{
+		EnterStateTime = Time.GetUnixTimeFromSystem();
+	}
 
 	protected bool WorksBetween(float start, float finish)
 	{
