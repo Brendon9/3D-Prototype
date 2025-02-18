@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://25oppuo1lemy"]
+
+[ext_resource type="Script" path="res://src/scripts/Enemies/Humanoid/Enemy.cs" id="1_1txi6"]
+[ext_resource type="PackedScene" uid="uid://wqvj3keel1vt" path="res://src/scenes/Player/Visuals/PlayerVisuals.tscn" id="2_kxov6"]
+[ext_resource type="PackedScene" uid="uid://cpopwfpb6b6wq" path="res://src/scenes/Player/HumanoidModel/HumanoidModel.tscn" id="3_e2f0s"]
+[ext_resource type="Script" path="res://src/scripts/Enemies/Humanoid/HumanoidAI.cs" id="4_v40x8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dpv5j"]
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_1txi6")
+
+[node name="Visuals" parent="." instance=ExtResource("2_kxov6")]
+
+[node name="Model" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_e2f0s")]
+player = NodePath("..")
+
+[node name="HumanoidAI" type="Node" parent="."]
+script = ExtResource("4_v40x8")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_dpv5j")

@@ -1,6 +1,7 @@
 
 using Chickensoft.GoDotTest;
 using Godot;
+using Shouldly;
 
 namespace Prototype.Tests;
 
@@ -25,7 +26,6 @@ public class DiceRollSystemTests : TestClass
   {
     var sut = new DiceRollSystem();
     var diceRoll = new DiceRoll(2, 10, 4);
-    // Assert.AreEqual(18, sut.Roll(diceRoll));
-    sut.Roll(diceRoll).Equals(18);
+    sut.Roll(diceRoll).ShouldBeEquivalentTo(18);
   }
 }
